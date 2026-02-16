@@ -45,8 +45,10 @@ def read_json(path: Path) -> dict[str, Any]:
 
 
 def verify_api_key(x_api_key: str | None) -> None:
-    if WHISPER_API_KEY and x_api_key != WHISPER_API_KEY:
-        raise HTTPException(status_code=401, detail="Invalid API key")
+    if not WHISPER_API_KEY:
+        raise HTTPException(status_code=500, detail="Server API key not configured")
+    if not x_api_key or x_api_key != WHISPER_API_KEY:
+        raise HTTPException(status_code=401, detail="Invalid or missing API key")
 
 
 def locate_job(job_id: str) -> Path | None:

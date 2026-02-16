@@ -1,10 +1,7 @@
 // import { useState } from 'react'
 import './App.css'
 import { Recorder } from './components/Recorder'
-import { syncManager } from './services/SyncManager'
-
-// Initialize sync manager
-console.log('SyncManager initialized:', syncManager);
+import './services/SyncManager'
 
 function App() {
   return (

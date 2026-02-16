@@ -1,16 +1,16 @@
 services:
   voicenote-pwa:
-    build: 
-      context: .
-      dockerfile: Dockerfile
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
     image: voicenote-pwa:latest
     container_name: voicenote-pwa
     restart: unless-stopped
     ports:
-      - "8081:80" # Map to host port 8081 (adjust as needed/Traefik)
+      - "8081:80"
     networks:
-      - amayu-network # Assuming existing network or create new
+      - amayu-network
 
 networks:
   amayu-network:
-    external: true # Or define if creating new
+    external: true

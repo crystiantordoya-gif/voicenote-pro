@@ -48,6 +48,8 @@ class SyncManager {
 
                     await storage.updateSyncStatus(record.id, true);
                     console.log(`Synced recording: ${record.title} (${record.id})`);
+                    // Release local storage after successful sync.
+                    await storage.deleteRecording(record.id);
                 } catch (error) {
                     console.error(`Failed to sync recording ${record.id}:`, error);
                     // Continue with next item, don't block queue
@@ -65,4 +67,4 @@ class SyncManager {
     }
 }
 
-export const syncManager = new SyncManager();
+new SyncManager();

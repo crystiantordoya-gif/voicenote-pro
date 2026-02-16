@@ -1,6 +1,5 @@
 export const n8nService = {
-    // Production URL
-    webhookUrl: 'https://n8n.amayu.cloud/webhook/ingest-audio',
+    webhookUrl: import.meta.env.VITE_WEBHOOK_URL || '/api/webhook/ingest-audio',
 
     async uploadRecording(
         blob: Blob,
