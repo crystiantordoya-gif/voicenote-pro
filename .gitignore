@@ -7,3 +7,8 @@ pwa/node_modules/
 pwa/dist/
 .idea/
 .vscode/
+whisper-api/venv/
+whisper-api/*.wav
+whisper-api/*.mp3
+whisper-api/*.m4a
+whisper-api/models/

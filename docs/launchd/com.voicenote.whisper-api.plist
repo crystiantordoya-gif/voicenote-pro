@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>com.voicenote.whisper-api</string>
+    <key>ProgramArguments</key>
+    <array>
+      <string>/Users/youruser/.venvs/whisper-api/bin/uvicorn</string>
+      <string>api:app</string>
+      <string>--host</string>
+      <string>0.0.0.0</string>
+      <string>--port</string>
+      <string>5000</string>
+    </array>
+    <key>WorkingDirectory</key>
+    <string>/Users/youruser/voicenote-pro/whisper-api</string>
+    <key>EnvironmentVariables</key>
+    <dict>
+      <key>WHISPER_MODEL</key>
+      <string>base</string>
+      <key>WHISPER_API_KEY</key>
+      <string>REPLACE_ME</string>
+    </dict>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>KeepAlive</key>
+    <true/>
+  </dict>
+</plist>
