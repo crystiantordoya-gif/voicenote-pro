@@ -12,3 +12,7 @@ whisper-api/*.wav
 whisper-api/*.mp3
 whisper-api/*.m4a
 whisper-api/models/
+
+# Python cache
+__pycache__/
+*.pyc
