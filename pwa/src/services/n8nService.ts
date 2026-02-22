@@ -1,6 +1,5 @@
 export const n8nService = {
     webhookUrl: import.meta.env.VITE_WEBHOOK_URL || '/api/webhook/ingest-audio',
-
     async uploadRecording(
         blob: Blob,
         title: string,
@@ -10,30 +9,27 @@ export const n8nService = {
         source: string = 'web-pwa'
     ): Promise<boolean> {
         try {
-            const formData = new FormData();
-            // 'data' field matches what n8n expects for binary
-            formData.append('data', blob, `recording-${Date.now()}.webm`);
-
-            formData.append('title', title);
-            formData.append('protagonist', protagonist);
-            formData.append('language', language);
-            formData.append('priority', priority);
-            formData.append('source', source);
-            formData.append('timestamp', new Date().toISOString());
-
-            const response = await fetch(this.webhookUrl, {
-                method: 'POST',
-                body: formData,
+            const params = new URLSearchParams({
+                title,
+                protagonist,
+                language,
+                priority,
+                source,
+                timestamp: new Date().toISOString()
             });
-
+            const url = `${this.webhookUrl}?${params.toString()}`;
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'audio/webm' },
+                body: blob,
+            });
             if (!response.ok) {
                 throw new Error(`Upload failed: ${response.statusText}`);
             }
-
             return true;
         } catch (error) {
             console.error('n8n Upload Error:', error);
-            throw error; // Let caller handle fallback to queue
+            throw error;
         }
     }
 };

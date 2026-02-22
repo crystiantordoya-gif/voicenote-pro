@@ -64,6 +64,7 @@ export const Recorder: React.FC = () => {
                 try {
                     await n8nService.uploadRecording(audioBlob, title, protagonist, language, priority);
                     alert('Grabación subida exitosamente!');
+                    await storage.deleteRecording(id);
                     // Optionally mark as synced or delete from local if strict space requirements
                 } catch (uploadErr) {
                     console.error(uploadErr);
