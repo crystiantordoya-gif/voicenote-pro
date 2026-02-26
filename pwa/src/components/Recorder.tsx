@@ -60,6 +60,7 @@ export const Recorder: React.FC = () => {
             });
 
             // Try upload
+            await storage.updateSyncStatus(id, true);
             if (navigator.onLine) {
                 try {
                     await n8nService.uploadRecording(audioBlob, title, protagonist, language, priority);
